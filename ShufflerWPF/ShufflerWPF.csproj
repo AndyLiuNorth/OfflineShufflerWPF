@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+        <!-- 主要對外語意版本 -->
+        <Version>1.0.0</Version>
+        <!-- CLR 載入版本（重大變更才調整） -->
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <!-- 檔案(Win 檔案內容 右鍵→內容→詳細資料) -->
+        <FileVersion>1.0.$([System.DateTime]::UtcNow.ToString('yyMM')).$([System.DateTime]::UtcNow.ToString('ddHH'))</FileVersion>
+        <!-- 可含預發布 / build metadata -->
+        <InformationalVersion>1.0.0</InformationalVersion>
+        <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+        <ApplicationIcon>Assets\App.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Page Update="Pages\UserScanIdPage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+        <XamlRuntime>Wpf</XamlRuntime>
+        <SubType>Designer</SubType>
+      </Page>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="log4net" Version="3.2.0" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
+        <PackageReference Include="MaterialDesignColors" Version="2.0.9" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.4-beta1" />
+      <PackageReference Include="QRCoder" Version="1.6.0" />
+      <PackageReference Include="ZXing.Net" Version="0.16.10" />
+      <PackageReference Include="ZXing.Net.Bindings.Windows.Compatibility" Version="0.16.13" />
+    </ItemGroup>
+    <ItemGroup>
+        <LibsToCopy Include="lib\**\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Interop.bpac">
+            <HintPath>lib\Interop.bpac.dll</HintPath>
+            <Private>true</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="lib\shufflersettings.ini">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <TargetPath>shufflersettings.ini</TargetPath>
+      </None>
+      <None Include="lib\log4net.config">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <TargetPath>log4net.config</TargetPath>
+      </None>
+    </ItemGroup>
+    <ItemGroup>
+        <!-- 確保檔案被包含（Build Action 可保持 None） -->
+        <None Include="Assets\App.ico" />
+    </ItemGroup>
+    <Target Name="CopyLibs" AfterTargets="AfterBuild">
+        <Message Text="Copy lib Folder File...@(LibsToCopy)=>$(OutputPath)" Importance="high" />
+        <Copy SourceFiles="@(LibsToCopy)"
+              DestinationFolder="$(OutputPath)"
+              SkipUnchangedFiles="true" />
+    </Target>
+</Project>

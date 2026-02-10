@@ -1,0 +1,140 @@
+<Window x:Class="ShufflerWPF.Pages.ShufflerSettingPage"
+        x:Name = "ShufflerSettingPag"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local2="clr-namespace:ShufflerWPF.Model"
+        xmlns:control="clr-namespace:ShufflerWPF.SingleTon"
+        xmlns:local="clr-namespace:ShufflerWPF.Pages"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="DragMe"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="ShufflerSetting" Height="450" Width="800">
+    <Window.DataContext>
+        <local2:ShufflerAutoPageViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Rectangle" BasedOn="{StaticResource WhiteRectangleStyle}" />
+        </Grid.Resources>
+        <Rectangle Grid.Row="0" />
+        <Rectangle Grid.Row="1" />
+        <Rectangle Grid.Row="2" />
+        <Rectangle Grid.Row="3" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal"  Margin="2">
+            <control:TopStackUserControl />
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Label  Content="Setting and Control Shuffler Page" Foreground="LightSeaGreen" FontSize="22" Margin="2 2 2 2"></Label>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <ListBox x:Name="ShufflerListBox" 
+                     Width="100"
+                     Background="MediumAquamarine"
+                     Margin="10" 
+                     ItemsSource="{Binding ShufflerStatusList}"
+                     SelectedItem="{Binding SelectedShufflerStatus, Mode=TwoWay}"
+                     >
+            </ListBox>
+            <Border Width="620" Margin="10" Padding="5" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                <Grid DataContext="{Binding SelectedShufflerStatus}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="14" HorizontalAlignment="Right" Text="Machine IP: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Text="{Binding ShufflerId}" Margin="5"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14" HorizontalAlignment="Right" Text="Machine status: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Text="{Binding LastStatus}" Margin="5"/>
+                    
+                    <TextBlock Grid.Row="2" Grid.Column="0" FontSize="14" HorizontalAlignment="Right" Text="IsShuffleCompleted: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Text="{Binding IsShuffleCompleted}" Margin="5"/>
+                    
+                    <TextBlock Grid.Row="3" Grid.Column="0" FontSize="14" HorizontalAlignment="Right" Text="Counting: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Text="{Binding CardCount}" Margin="5"/>
+                    
+                    <TextBlock Grid.Row="4" Grid.Column="0" FontSize="14" HorizontalAlignment="Right" Text="Finished Counting: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="4" Grid.Column="1" FontSize="14" HorizontalAlignment="Left" Text="{Binding NumberOfCompletedShuffling}" Margin="5"/>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="2" FontSize="14" HorizontalAlignment="Right" Text="Last Error Code: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" FontSize="14" HorizontalAlignment="Left" Text="{Binding LastError}" Margin="5"/>
+                    
+                    <TextBlock Grid.Row="1" Grid.Column="2" FontSize="14" HorizontalAlignment="Right" Text="Last Warning Code: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="1" Grid.Column="3" FontSize="14" HorizontalAlignment="Left" Text="{Binding LastWarning}" Margin="5"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="2" FontSize="14" HorizontalAlignment="Right" Text="CardCase Code: " FontWeight="Bold" Margin="5"/>
+                    <TextBlock Grid.Row="2" Grid.Column="3" FontSize="14" HorizontalAlignment="Left" Text="{Binding CardCase}" Margin="5"/>
+
+
+                </Grid>
+            </Border>
+            
+        </StackPanel>
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- <Button x:Name="DoShuffleButton"  -->
+                <!--         Style="{StaticResource ButtonMyStyle}"  -->
+                <!--         FontSize="20" -->
+                <!--         HorizontalAlignment="Center" IsTabStop="False"   -->
+                <!--         Content="Start Auto Shuffling"  -->
+                <!--         Width="250"  -->
+                <!--         Click="DoShuffleButton_Click" -->
+                <!--         ToolTip="Start Shuffle Automatically"  -->
+                <!--         Cursor="Hand" > -->
+                <!-- </Button> -->
+                <Button x:Name="StopShuffleButton" 
+                        Style="{StaticResource ButtonMyStyle}" 
+                        FontSize="20"
+                        HorizontalAlignment="Center" 
+                        IsTabStop="False"  
+                        Content="Stop Shuffling!" 
+                        Width="250" 
+                        Click="StopShuffleButton_Click" 
+                        ToolTip="Stop Machine Auto Shuffle" 
+                        Cursor="Hand">
+                </Button>
+                <!-- <Button x:Name="RefreshShuffleButton"  -->
+                <!--         Style="{StaticResource ButtonMyStyle}"  -->
+                <!--         FontSize="20" -->
+                <!--         HorizontalAlignment="Center"  -->
+                <!--         IsTabStop="False"   -->
+                <!--         Content="Refresh"  -->
+                <!--         Width="250"  -->
+                <!--         Click="RefreshShuffleButton_Click"  -->
+                <!--         ToolTip="Refresh the Shuffler List"  -->
+                <!--         Cursor="Hand"> -->
+                <!-- </Button> -->
+                <Button x:Name="LockUnclokScreenButton" 
+                        Style="{StaticResource ButtonMyStyle}" 
+                        FontSize="20"
+                        HorizontalAlignment="Center" 
+                        IsTabStop="False"  
+                        Content="Lock Screen" 
+                        Width="250" 
+                        Click="LockUnlockButton_Click" 
+                        ToolTip="Lock or Unlock the Screen Touch"
+                        Cursor="Hand">
+                </Button>
+            </StackPanel>
+    </Grid>
+</Window>

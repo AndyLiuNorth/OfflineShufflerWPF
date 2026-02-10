@@ -1,0 +1,173 @@
+﻿<Window x:Class="ShufflerWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:ShufflerWPF"
+        xmlns:local2="clr-namespace:ShufflerWPF.Model"
+        mc:Ignorable="d"
+        UseLayoutRounding="True"
+        ResizeMode="NoResize"
+        MouseLeftButtonDown="DragMe"
+        WindowStyle="None"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="500" Width="820">
+    <!-- UseLayoutRounding is to fix some Jagged UI Problem -->
+    <Window.DataContext>
+        <local2:MemberInfoWebServiceModel />
+    </Window.DataContext>
+    
+    <md:TransitioningContent 
+        OpeningEffect="{md:TransitionEffect Kind=SlideInFromTop}" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="12*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="1" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="2" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="3" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="4" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="5" Style="{StaticResource WhiteRectangleStyle}" />
+        <Rectangle Grid.Row="6" Style="{StaticResource WhiteRectangleStyle}" />
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label VerticalAlignment="Center" Content="ID:" FontSize="20"></Label>
+            <Label VerticalAlignment="Center" Content="{Binding Path=idui}" FontSize="20"></Label>
+            <Button x:Name="LoginOutButton" Style="{StaticResource ButtonMyStyle}"  
+                    IsTabStop="False"  
+                    Background="WhiteSmoke"
+                    Width="100"
+                    Height="30"
+                    Margin="5,5,15,5"
+                    Content="Log Out" 
+                    Click="loginOutButtonButton_OnClick"
+                    ToolTip="Close the Application">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top">
+            <Button x:Name="CreateButton" Style="{StaticResource ButtonMyStyle}"
+                    IsTabStop="False"  
+                    Content="Box ID" 
+                    Click="CreateTrueButton_OnClick"
+                    ToolTip="Create a new Box ID">
+            </Button>
+            <Button x:Name="CreateShoeButton" Style="{StaticResource ButtonMyStyle}"  
+                    IsTabStop="False"
+                    Content="Shoe" 
+                    ToolTip="Create a Shoe for Box"
+                    Click="CreateShoeButton_OnClick">
+            </Button>
+            <Button x:Name="AdministratorBtn" Style="{StaticResource ButtonMyStyle}"  
+                    HorizontalAlignment="Right" 
+                    IsTabStop="False"  
+                    Content="Administrator" 
+                    Click="AdministratorBtn_OnClick"
+                    ToolTip="Administrator Setting" 
+                    Cursor="Hand">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="PrintBoxQrCodeBtn" Style="{StaticResource ButtonMyStyle}"  
+                    Width="200"
+                    FontSize="12"
+                    IsTabStop="False"  
+                    Content="RePrint Box ID QRCode" 
+                    Click="PrintBoxQrCodeBtn_OnClick"
+                    ToolTip="RePrint Box ID QRcode">
+            </Button>
+            <Button x:Name="RegisterShoeBtn" Style="{StaticResource ButtonMyStyle}"  
+                    IsTabStop="False"  
+                    Content="Register Shoe " 
+                    Click="RegisterShoeBtn_OnClick"
+                    ToolTip="Take Out Shoe or Confirm Shoe">
+            </Button>
+            <Button x:Name="ShufflerSettingBtn" Style="{StaticResource ButtonMyStyle}"  
+                    IsTabStop="False"  
+                    Content="Machine settings" 
+                    Click="ShufflerSettingBtn_OnClick"
+                    ToolTip="Shuffler Machine Stop and Unlock" >
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Center" Orientation="Horizontal" >
+            <Button x:Name="DeleteTrueShoeBtn"  Style="{StaticResource ButtonSecondStyle}"
+                    FontSize="16"
+                    IsTabStop="False"
+                    Content="Delete Box ID" 
+                    Click="DeleteTrueShoeBtn_OnClick"
+                    ToolTip="Delete Box ID" >
+            </Button>
+            <Button x:Name="PrintBoxInformationBtn" Style="{StaticResource ButtonMyStyle}"  
+                    Width="200"
+                    FontSize="12"
+                    IsTabStop="False"  
+                    Content="RePrint Shoe Info"
+                    Click="PrintBoxInformationBtn_OnClick"
+                    ToolTip="RePrint Shoe Information">
+            </Button>
+            <Button x:Name="HistoryButton" Style="{StaticResource ButtonMyStyle}"
+                    Background="Pink"
+                    BorderBrush="HotPink"
+                    Foreground="AliceBlue"
+                    IsTabStop="False"
+                    Content="History" 
+                    Click="webAPItestButton_OnClick"
+                    IsEnabled="True"
+                    ToolTip="">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="DestroyTrueShoeBtn" Style="{StaticResource ButtonSecondStyle}"  
+                    IsTabStop="False"  
+                    FontSize="16"
+                    Content="Destroy Box Contents" 
+                    Click="DestroyTrueShoeBtn_OnClick"
+                    ToolTip="Destroy Box Contents" >
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="5" HorizontalAlignment="Center" Orientation="Horizontal">
+            
+           
+            
+            <Button x:Name="PrintTestButton" Style="{StaticResource ButtonMyStyle}"
+                    Width="90"
+                    IsTabStop="False"  
+                    Content="Print Test" 
+                    Click="PrintTestButton_OnClick"
+                    ToolTip="">
+            </Button>
+            <Button x:Name="TelegrameTestButton" Style="{StaticResource ButtonMyStyle}"  
+                    Width="90"
+                    IsTabStop="False"  
+                    Content="Telegram Test" 
+                    Click="TelegrameTestButton_OnClick"
+                    ToolTip="">
+            </Button>
+            <Button x:Name="webAPItestButton" Style="{StaticResource ButtonMyStyle}"
+                    Width="90"
+                    IsTabStop="False"
+                    Content="WebApi Test" 
+                    Click="webAPItestButton_OnClick"
+                    ToolTip="">
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="6">
+            <Button x:Name="ExitButton" Style="{StaticResource ButtonMyStyle}"  
+                    IsTabStop="False"
+                    Width="100"
+                    Height="30"
+                    Margin="5,5,15,5"
+                    Content="Exit" 
+                    Click="ExitButtonButton_OnClick"
+                    ToolTip="Close the Application" 
+                    >
+            </Button>
+        </StackPanel>
+    </Grid>
+    </md:TransitioningContent>
+</Window>

@@ -1,0 +1,53 @@
+<Window x:Class="ShufflerWPF.Pages.UserScanIdPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ShufflerWPF.Pages"
+        mc:Ignorable="d"
+        Topmost="True"
+        WindowStyle="None"              
+        WindowState="Maximized"
+        ResizeMode="NoResize"           
+        ShowInTaskbar="False"            
+        PreviewKeyDown="ScanIDPage_PreviewKeyDown"
+        Title="ScanIDPage" WindowStartupLocation="CenterScreen" Height="250" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="66*"></RowDefinition>
+            <RowDefinition Height="26*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="MediumPurple" Offset="1"/>
+                    <GradientStop Color="MediumPurple"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Please Scan Your ID Login" FontSize="30" Margin="20 20 20 2"></Label>
+            <TextBox  x:Name="ScanIdInput"
+                      Focusable="True"  
+                      IsTabStop="True" 
+                      FontSize="30"
+                      Width="350"
+                      Height="80"
+                      >
+            </TextBox>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Button x:Name="CancelButton" HorizontalAlignment="Right" IsTabStop="False"  Content="Exit" Margin="20 20 20 2" Height="30" Width="80" Click="CancelButton_Click" ToolTip="Back" Cursor="Hand">
+                <Button.Template >
+                    <ControlTemplate TargetType="{x:Type Button}" >
+                        <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="1" CornerRadius="7,7,7,7">
+                            <Border.Background>MediumPurple</Border.Background>
+                            <ContentPresenter Content="{TemplateBinding ContentControl.Content}" HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

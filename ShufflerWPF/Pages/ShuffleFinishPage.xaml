@@ -1,0 +1,86 @@
+<Window x:Class="ShufflerWPF.Pages.ShuffleFinishPage"
+        x:Name = "ShufflerFinishPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:control="clr-namespace:ShufflerWPF.SingleTon"
+        xmlns:local="clr-namespace:ShufflerWPF.Pages"
+        xmlns:lccal2="clr-namespace:ShufflerWPF.Model"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="DragMe"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="ShuffleFinishPage" Height="450" Width="750">
+    <Window.DataContext>
+        <lccal2:TrueBoxViewModel></lccal2:TrueBoxViewModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="50*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Rectangle" BasedOn="{StaticResource WhiteRectangleStyle}" />
+        </Grid.Resources>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="2">
+            <control:TopStackUserControl />
+        </StackPanel>
+        <Label Grid.Row="1"  Content="Action: Print Shoe Information" HorizontalAlignment="Center" Foreground="DarkBlue" FontSize="20" Margin="2 2 2 2"></Label>
+        <Border Grid.Row="2" Width="700" Margin="10"  BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+            <Grid HorizontalAlignment="Center" Margin="10" Width="600">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="17" Text="Location : " FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" FontSize="17" Text="{Binding OneBoxModel.DomainUi}" Margin="5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="17" Text="Table No. : " FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="17" Text="{Binding OneBoxModel.tableId}" Margin="5"/>
+                    
+                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="17" Text="Card Color : " FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" FontSize="17" Text="{Binding OneBoxModel.colortypeUi}" Margin="5"/>
+            
+                <TextBlock Grid.Row="0" Grid.Column="2" FontSize="17" Text="Purpose: " FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" FontSize="17" Text="{Binding OneBoxModel.IsMainUi}" Margin="5"/>
+            
+                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="17" Text="Number of Uses: " FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="1" Grid.Column="3" FontSize="17" Text="{Binding OneBoxModel.count}" Margin="5"/>
+
+                <TextBlock Grid.Row="2" Grid.Column="2" FontSize="17" Text="Max Uses:" FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="2" Grid.Column="3" FontSize="17" Text="{Binding OneBoxModel.maxCount}" Margin="5"/>
+            
+                <TextBlock Grid.Row="3" Grid.Column="0" FontSize="17" Text="Create DATE:" FontWeight="Bold" Margin="5"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" FontSize="17" Text="{Binding OneBoxModel.createTime}" Margin="5"/>
+
+            </Grid>
+        </Border>
+        <Button Grid.Row="3" x:Name="PrintButton" 
+                            Style="{StaticResource ButtonMyStyle}" 
+                            HorizontalAlignment="Center" 
+                            Content="Print Shoe Information"
+                            FontSize="20"
+                            Margin="15" 
+                            Height="60" 
+                            Width="260" 
+                            Click="PrintButton_Click" 
+                            ToolTip="Print Shoe Information"
+                            >
+        </Button>
+        <StackPanel Grid.Row="4" Orientation="Vertical" HorizontalAlignment="Right">
+
+        </StackPanel>
+    </Grid>
+</Window>

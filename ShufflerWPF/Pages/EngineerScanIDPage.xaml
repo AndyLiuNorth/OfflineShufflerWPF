@@ -1,0 +1,71 @@
+<Window x:Class="ShufflerWPF.Pages.EngineerScanIDPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:ShufflerWPF.Pages"
+      mc:Ignorable="d"
+      WindowStartupLocation="CenterScreen"
+      Title="Engineer Login" Height="450" Width="800">
+    <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+            <RowDefinition Height="18*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="Rectangle" BasedOn="{StaticResource WhiteRectangleStyle}" />
+        </Grid.Resources>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <md:PackIcon Kind="Account" Width="24" Height="24" VerticalAlignment="Center" Foreground="Gray" Margin="0,0,0,0"/>
+            <TextBox  x:Name="ScanaccountInput" 
+                      md:HintAssist.Foreground = "LightGray"
+                      md:HintAssist.Hint="account"
+                      HorizontalAlignment="Left" 
+                      Width="400"
+                      FontSize="26" 
+                      Margin="20">
+            </TextBox >
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <md:PackIcon Kind="Password" Width="24" Height="24" VerticalAlignment="Center" Foreground="Gray" Margin="0,0,0,0"/>
+            <PasswordBox   x:Name="ScanIdInput"
+                           md:HintAssist.Foreground = "LightGray"
+                           md:HintAssist.Hint="password"
+                           Focusable="True"  
+                           IsTabStop="True" 
+                           FontSize="26"
+                           Width="400"
+                           Margin="20"
+            >
+            </PasswordBox>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+            <Button x:Name="EnterButton" Style="{StaticResource ButtonMyStyle}"  
+                    HorizontalAlignment="Center" 
+                    IsTabStop="False"  
+                    Content="Enter" 
+                    Click="EnterButton_OnClick"
+                    ToolTip="LogIn Enigineer Mode"
+                    Width="350"
+                    Margin="20"
+            >
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Vertical">
+            <Button x:Name="CancelButton" HorizontalAlignment="Right" 
+                    Style="{StaticResource ButtonMyStyle}" 
+                    IsTabStop="False"  
+                    Content="Exit" 
+                    Margin="20 20 20 2" 
+                    Height="30" Width="100" 
+                    Click="CancelButton_Click" 
+                    ToolTip="Back" 
+                    Cursor="Hand">
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

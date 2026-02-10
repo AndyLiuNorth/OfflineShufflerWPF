@@ -1,0 +1,184 @@
+<Window x:Class="ShufflerWPF.Pages.AdministratorSettingPage"
+        x:Name = "ShufflerAdministratorSettingPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:control="clr-namespace:ShufflerWPF.SingleTon"
+        xmlns:local="clr-namespace:ShufflerWPF.Pages"
+        xmlns:local2 = "clr-namespace:ShufflerWPF.Model"
+        mc:Ignorable="d"
+        MouseLeftButtonDown="DragMe"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="AdministratorSettingPage" Height="650" Width="810">
+    <Window.DataContext>
+        <local2:SoftWareSettingsModel></local2:SoftWareSettingsModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="75*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.Resources>
+            <Style TargetType="Rectangle" BasedOn="{StaticResource WhiteRectangleStyle}" />
+        </Grid.Resources>
+        <Rectangle Grid.Row="0" />
+        <Rectangle Grid.Row="1" />
+        <Rectangle Grid.Row="2" />
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="2">
+            <control:TopStackUserControl />
+        </StackPanel>
+         <Border Grid.Row="1" Width="760" Margin="5" Padding="2" BorderBrush="Gray" BorderThickness="1" CornerRadius="5">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="70*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="12 0 0 0">
+                        <Label HorizontalAlignment="Right" Content="Domain:" FontSize="16" Margin="2 10 2 10"></Label>
+                        <ComboBox x:Name="DomainCombobox" 
+                                  ItemsSource="{Binding Path=DomainCombobox}"
+                                  SelectedItem="{Binding Path=Domain,Mode=TwoWay }"
+                                  Height="30" 
+                                  Width="90" 
+                                  FontSize="16" 
+                                  Margin="2 2 2 2">
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label HorizontalAlignment="Right" Content="Studio:" FontSize="16" Margin="2 10 2 10"></Label>
+                        <ComboBox x:Name="StudioCombobox" 
+                                  ItemsSource="{Binding Path=StudioCombobox}"
+                                  SelectedItem="{Binding Path=Studio,Mode=TwoWay }"
+                                  Height="30" 
+                                  Width="150" 
+                                  FontSize="16" 
+                                  Margin="2 2 2 2">
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Content="Live Model:" FontSize="16" Margin="2 10 2 10"></Label>
+                    <StackPanel Grid.Row="1" Grid.Column="1">
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="LiveModelCombobox" 
+                                  ItemsSource="{Binding Path=LiveModeCombobox}"
+                                  SelectedItem="{Binding Path=LiveMode,Mode=TwoWay }"
+                                  Height="30" 
+                                  Width="450" 
+                                  FontSize="16" 
+                                  Margin="2 2 2 2">
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Content="Auth API:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="AuthAPITextBox" 
+                              Text = "{Binding Path=AuthApi}"
+                              Grid.Row="2" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                    
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Content="Table List API:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="TableListApiTextBox" 
+                              Text = "{Binding Path=TableListApi}"
+                              Grid.Row="3" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                    <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Content="EngineerLogin API:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="EngineerApiTextBox" 
+                              Text = "{Binding Path=EngineerLogInApi}"
+                              Grid.Row="4" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                    
+                    <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Content="Shuffler Server 1 URL:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="ShufflerServer1TextBox" 
+                              Text = "{Binding Path=ShufflerServerUrl}"
+                              Grid.Row="5" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                    <!-- <Label Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Content="Shuffler Server 2 URL:" FontSize="16" Margin="2 8 2 8"></Label> -->
+                    <!-- <TextBox  x:Name="ShufflerServer2TextBox"  -->
+                    <!--           Text = "{Binding Path=ShufflerServerUrl2}" -->
+                    <!--           Grid.Row="6" Grid.Column="1"  -->
+                    <!--           HorizontalAlignment="Left"   -->
+                    <!--           Height="30"  -->
+                    <!--           Width="500"  -->
+                    <!--           FontSize="14"  -->
+                    <!--           Margin="2"> -->
+                    <!-- </TextBox > -->
+                    <!-- <Label Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Content="Shuffler Server 3 URL:" FontSize="16" Margin="2 8 2 8"></Label> -->
+                    <!-- <TextBox  x:Name="ShufflerServer3TextBox"  -->
+                    <!--           Text = "{Binding Path=ShufflerServerUrl3}" -->
+                    <!--           Grid.Row="7" Grid.Column="1"  -->
+                    <!--           HorizontalAlignment="Left"   -->
+                    <!--           Height="30"  -->
+                    <!--           Width="500"  -->
+                    <!--           FontSize="14"  -->
+                    <!--           Margin="2"> -->
+                    <!-- </TextBox > -->
+                    <Label Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Content="Shuffler Machine Server IP:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="ShufflerServerIpTextBox" 
+                              Text = "{Binding Path=ShufflerMachineServerIp}"
+                              Grid.Row="8" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                    <Label Grid.Row="9" Grid.Column="0" HorizontalAlignment="Right" Content="API Proxy URL:" FontSize="16" Margin="2 8 2 8"></Label>
+                    <TextBox  x:Name="ApiProxyUrlTextBox" 
+                              Text = "{Binding Path=ApiProxyUrl}"
+                              Grid.Row="9" Grid.Column="1" 
+                              HorizontalAlignment="Left"  
+                              Height="30" 
+                              Width="500" 
+                              FontSize="14" 
+                              Margin="2">
+                    </TextBox >
+                </Grid>
+            </Border>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="20 2 20 2">
+            <Button x:Name="SaveSettingBtn" Content="Save Setting" 
+                    Style="{StaticResource ButtonMyStyle}"
+                    ToolTip="Save Setting to ServerSetting.ini"
+                    Click="SaveSettingBtnClick"
+                    >
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
